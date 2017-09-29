@@ -12,4 +12,5 @@ Composer is a package manager for PHP. Install Composer and install it to the pr
     $ php -r "unlink('composer-setup.php');"
 
     $ php composer.phar install
+    $ php composer.phar dumpautoload -o
 ```
