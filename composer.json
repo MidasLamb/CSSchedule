@@ -1,0 +1,19 @@
+{
+    "name": "midas/cwschedule",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Midas Lambrichts",
+            "email": "midas_lambrichts@hotmail.com"
+        }
+    ],
+    "require": {
+        "fabpot/goutte": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "src/"
+        }
+    }
+}
