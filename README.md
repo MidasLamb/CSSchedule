@@ -1,4 +1,4 @@
-#CS Schedule
+# CS Schedule
 
 ## How to pull
 
