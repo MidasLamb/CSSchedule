@@ -8,9 +8,9 @@
 </head>
 <body>
 
-    <div id="linkGenerator">http://uurrooster/calendar/?</div>
+    <div id="linkGenerator">https://csschedule.xyz/calendar/?</div>
     <button onclick="clipboard()">Copy!</button><br>
-    <a href="http://uurrooster/calendar?" download id="downloadICS">Download ICS File</a><br>
+    <a href="https://csschedule.xyz/calendar?" download id="downloadICS">Download ICS File</a><br>
     <?php
         $i = 0;
         foreach($courseArray as $course){
