@@ -36,6 +36,7 @@ class EntryPoint{
 
     public static function calendar(){
         if (isset($_GET["courses"])){
+            header("content-type:text/calendar");
             $str = new Str();
             $str->addLine("BEGIN:VCALENDAR");
             $str->addLine("VERSION:2.0");
