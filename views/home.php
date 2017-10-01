@@ -9,6 +9,7 @@
 <body>
 
     <div id="linkGenerator">http://uurrooster/calendar/?</div>
+    <button onclick="clipboard()">Copy!</button><br>
     <a href="http://uurrooster/calendar?" download id="downloadICS">Download ICS File</a><br>
     <?php
         $i = 0;
@@ -33,6 +34,13 @@
             }
 
             document.getElementById("downloadICS").href= linkElement.innerHTML;
+        }
+
+        function clipboard(){
+            var linkElement = document.getElementById("linkGenerator");
+            window.getSelection().selectAllChildren(linkElement);
+            document.execCommand('copy');
+            window.getSelection().empty();
         }
     </script>
 </body>
