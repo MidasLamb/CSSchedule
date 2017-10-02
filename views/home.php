@@ -10,7 +10,7 @@
 
     <div id="linkGenerator">https://csschedule.xyz/calendar/?</div>
     <button onclick="clipboard()">Copy!</button><br>
-    <a href="https://csschedule.xyz/calendar?" download id="downloadICS">Download ICS File</a><br>
+    <a href="https://csschedule.xyz/calendar?" id="downloadICS">Download ICS File</a><br>
 
     <table>
         <thead>
