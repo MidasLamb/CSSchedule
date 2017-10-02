@@ -49,7 +49,7 @@
                 linkElement.innerHTML += "&amp;"+attributeName+"="+attributeValue;
             }
 
-            document.getElementById("downloadICS").href= linkElement.innerHTML.replace(/&amp;/g, '&');;
+            document.getElementById("downloadICS").href= linkElement.innerText;
         }
 
         function clipboard(){
