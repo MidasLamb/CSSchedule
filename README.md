@@ -15,4 +15,4 @@ As the web-application adds the selected courses to the URL of the webpage, the 
 
 ## About the author
 
-This repository is created and maintained by Midas Lambrechts, Computer Science student at KU Leuven. Contributions to this repository are welcomed in the form of pull requests.
+This repository is created and maintained by Midas Lambrichts, Computer Science student at KU Leuven. Contributions to this repository are welcomed in the form of pull requests.
