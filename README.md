@@ -12,3 +12,7 @@ To generate an ICS file, the user simply marks the courses they want to include 
 ![Screenshot Usage](/images/Screenshot_20171002_142820.png)
 
 As the web-application adds the selected courses to the URL of the webpage, the selected choice can easily be saved and shared with other students by simply copying the URL of the page, either by manually selecting it, or by clicking the "Copy!" button.
+
+## About the author
+
+This repository is created and maintained by Midas Lambrechts, Computer Science student at KU Leuven. Contributions to this repository are welcomed in the form of pull requests.
