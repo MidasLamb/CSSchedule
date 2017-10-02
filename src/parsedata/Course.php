@@ -64,9 +64,9 @@ class Course{
         $str = new Str();
         $str->addLine("BEGIN:VEVENT");
         $str->addLine("UID:".self::createUIDFromDBRow($row));
-        $str->addLine("DTSTAMP:".$row['DTStamp']);
-        $str->addLine("DTSTART:".$row['DTStart']);
-        $str->addLine("DTEND:".$row['DTEnd']);
+        $str->addLine("DTSTAMP:".$row['DTStamp']."Z");
+        $str->addLine("DTSTART:".$row['DTStart']."Z");
+        $str->addLine("DTEND:".$row['DTEnd']."Z");
         $str->addLine("LOCATION:".$row['Location']);
         $str->addLine("SUMMARY:".$row['Name']);
         $str->addLine("END:VEVENT");
