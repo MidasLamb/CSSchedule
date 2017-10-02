@@ -46,9 +46,13 @@
 
             <div class="col-md-4">
                 <h2>Export to ICS</h2>
-                <div id="linkGenerator">https://csschedule.xyz/calendar/?</div>
-                <button onclick="clipboard()">Copy!</button><br>
-                <a href="https://csschedule.xyz/calendar?" download id="downloadICS">Download ICS File</a><br>
+                <div class="form-group">
+                    <input id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?" readonly>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-outline-primary" onclick="clipboard()">Copy</button>
+                    <a class="btn btn-primary" href="https://csschedule.xyz/calendar?" download id="downloadICS">Download ICS File</a><br>
+                </div>
             </div>
         </div>
     </div>
@@ -56,14 +60,14 @@
     <script>
         function toggleGetAttribute(attributeName, attributeValue){
             var linkElement = document.getElementById("linkGenerator");
-            var link = linkElement.innerHTML;
+            var link = linkElement.placeholder;
             if (link.includes(attributeName+"="+attributeValue)){
-                linkElement.innerHTML = link.replace("&amp;"+attributeName+"="+attributeValue, "");
+                linkElement.placeholder = link.replace("&amp;"+attributeName+"="+attributeValue, "");
             } else {
-                linkElement.innerHTML += "&amp;"+attributeName+"="+attributeValue;
+                linkElement.placeholder += "&amp;"+attributeName+"="+attributeValue;
             }
 
-            document.getElementById("downloadICS").href= linkElement.innerHTML;
+            document.getElementById("downloadICS").href= linkElement.placeholder;
         }
 
         function clipboard(){
