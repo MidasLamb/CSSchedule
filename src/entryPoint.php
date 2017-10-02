@@ -41,6 +41,8 @@ class EntryPoint{
             $str->addLine("BEGIN:VCALENDAR");
             $str->addLine("VERSION:2.0");
             $str->addLine("PRODID:-//midaslambrichts/cscalendar//cscalendar v1.0//EN");
+            $str->addLine("X-WR-TIMEZONE:Europe/Brussels");
+            $str->addLine("X-WR-CALNAME:CSSchedule");
             foreach($_GET["courses"] as $courseId){
                 $res = DBHandler::getCourseMoments($courseId);
                 while($row = $res->fetchArray()){
