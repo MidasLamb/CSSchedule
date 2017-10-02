@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CSSchedule</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/pretty.css">
 </head>
 <body style="padding-top:5rem">
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
@@ -31,23 +32,24 @@
             <div class="col-md-8 order-md-1">
                 <h2>Select courses</h2>
                 <div class="form-group">
-                    <input id="searchText" class="form-control" type="text" placeholder="Search" oninput="filter()">
+                    <input id="searchText" class="form-control" type="text" placeholder="Search" oninput="filter(this.value)">
                 </div>
-                <table class="table table-responsive table-sm">
+                <table class="table table-sm" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Coursename</th>
+                            <th style="font-size:1.3em;">Coursename</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             foreach($courseArray as $course){
                         ?>
-                            <tr>
-                                <td>
-                                    <div class="btn-group" data-toggle="buttons">
+                            <tr style="border:none;width:100%;">
+                                <td style="border:none;width:100%;">
+                                    <div class="btn-group coursename-btn" data-toggle="buttons">
                                         <label class="btn btn-outline-dark btn-block" onclick="toggleGetAttribute('courses[]','<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
-                                            <input type="checkbox" name="courses[]"> <?php echo($course["Name"]) ?>
+                                            <input type="checkbox" name="courses[]"> 
+                                            <div class="courseName"><?php echo($course["Name"]) ?></div>
                                         </label>
                                     </div>
                                 </td>
@@ -85,15 +87,25 @@
             document.execCommand('copy');
         }
 
-        function filter(){
-            var searchText = $('#searchText').val().toLowerCase();
-            $("table tbody tr").each(function(){
-                if ($(this).text().toLowerCase().includes(searchText)){
+        var lastSearchString = "";
+
+        function filter(searchText){
+            searchText = searchText.toLowerCase();
+            var group;
+            if (searchText.length > lastSearchString.length){
+                group = $("table tbody tr:visible");
+            } else {
+                group = $("table tbody tr");
+            }
+            group.each(function(){
+                if ($(this).find(".courseName").text().toLowerCase().includes(searchText)){
                     $(this).show();
                 } else {
                     $(this).hide();
                 }
             });
+
+            lastSearchString = searchText;
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

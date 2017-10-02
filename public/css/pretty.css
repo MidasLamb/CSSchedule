@@ -1,0 +1,39 @@
+
+.courseName{
+    font-size:0.75em;
+}
+
+.btn {
+    cursor:pointer;
+}
+
+td {
+    word-wrap: break-word;
+}
+
+.btn-outline-dark:hover:not(.active) {
+    background-color: transparent;
+    color: #343a40;
+}
+
+@media only screen and (min-width : 650px) {
+    .courseName {
+        font-size:1em;
+    }
+}
+
+
+@media only screen and (min-width : 992px) {
+    .btn-outline-dark:hover:not(.active) {
+        color: #fff;
+        background-color: #343a40;
+    }
+    
+    .coursename-btn {
+        width:100%;
+    }
+
+    .courseName {
+        font-size:1.2em;
+    }
+}
