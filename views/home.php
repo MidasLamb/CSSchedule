@@ -30,6 +30,9 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h2>Select courses</h2>
+                <div class="form-group">
+                    <input id="searchText" class="form-control" type="text" placeholder="Search" oninput="filter()">
+                </div>
                 <table class="table table-responsive table-sm">
                     <thead>
                         <tr>
@@ -69,12 +72,28 @@
             }
 
             document.getElementById("downloadICS").href= linkElement.placeholder;
+
+            window.setTimeout(function(){
+                $('#searchText').get(0).focus();
+            }, 100);
+            
         }
 
         function clipboard(){
             var linkElement = document.getElementById("textSelector");
             window.getSelection().selectAllChildren(linkElement);
             document.execCommand('copy');
+        }
+
+        function filter(){
+            var searchText = $('#searchText').val().toLowerCase();
+            $("table tbody tr").each(function(){
+                if ($(this).text().toLowerCase().includes(searchText)){
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
