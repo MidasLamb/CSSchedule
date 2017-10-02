@@ -11,15 +11,31 @@
     <div id="linkGenerator">https://csschedule.xyz/calendar/?</div>
     <button onclick="clipboard()">Copy!</button><br>
     <a href="https://csschedule.xyz/calendar?" download id="downloadICS">Download ICS File</a><br>
-    <?php
-        $i = 0;
-        foreach($courseArray as $course){
-    ?>
-        <input type="checkbox" id="<?php echo($i) ?>" name="courses[]" onclick="toggleGetAttribute('courses[]','<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
-        <label for="<?php echo($i++) ?>"><?php echo($course["Name"]) ?></label><br>
-    <?php
-        }
-    ?>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Coursename</th>
+                <th>Add?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                foreach($courseArray as $course){
+            ?>
+                <tr>
+                    <td>
+                        <?php echo($course["Name"]) ?>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="courses[]" onclick="toggleGetAttribute('courses[]','<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
+                    </td>
+                </tr>
+            <?php
+                }
+            ?>
+        </tbody>
+    </table>
 
 
 
