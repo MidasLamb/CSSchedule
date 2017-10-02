@@ -19,8 +19,9 @@
             <div class="col-md-4 order-md-2">
                 <h2>Export to ICS</h2>
                 <div class="form-group">
-                    <input id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?" readonly>
-                    <div id="linkSelector" style="display:none"></div>
+                    <div id="textSelector">
+                        <input id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?" readonly>
+                    </div>
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-outline-primary" onclick="clipboard()">Copy</button>
@@ -62,22 +63,18 @@
             var linkElement = document.getElementById("linkGenerator");
             var link = linkElement.placeholder;
             if (link.includes(attributeName+"="+attributeValue)){
-                linkElement.placeholder = link.replace("&amp;"+attributeName+"="+attributeValue, "");
+                linkElement.placeholder = link.replace("&"+attributeName+"="+attributeValue, "");
             } else {
-                linkElement.placeholder += "&amp;"+attributeName+"="+attributeValue;
+                linkElement.placeholder += "&"+attributeName+"="+attributeValue;
             }
 
-
-            document.getElementById("linkSelector").innerHTML = linkElement.placeholder;
-            document.getElementById("downloadICS").href= document.getElementById("linkSelector").innerText;
-
+            document.getElementById("downloadICS").href= linkElement.placeholder;
         }
 
         function clipboard(){
-            var linkElement = document.getElementById("linkSelector");
+            var linkElement = document.getElementById("textSelector");
             window.getSelection().selectAllChildren(linkElement);
             document.execCommand('copy');
-            window.getSelection().empty();
         }
     </script>
 </body>
