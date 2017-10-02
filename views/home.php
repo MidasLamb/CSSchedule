@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h2>Select courses</h2>
-                <table>
+                <table class="table table-responsive table-sm table-hover">
                     <thead>
                         <tr>
                             <th>Coursename</th>
@@ -46,7 +46,10 @@
                                     <?php echo($course["Name"]) ?>
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="courses[]" onclick="toggleGetAttribute('courses[]','<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="courses[]" onclick="toggleGetAttribute('courses[]','<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
+                                        <span class="custom-control-indicator"></span>
+                                    </label>
                                 </td>
                             </tr>
                         <?php
