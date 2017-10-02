@@ -67,8 +67,10 @@
                 linkElement.placeholder += "&amp;"+attributeName+"="+attributeValue;
             }
 
+
             document.getElementById("linkSelector").innerHTML = linkElement.placeholder;
             document.getElementById("downloadICS").href= document.getElementById("linkSelector").innerText;
+
         }
 
         function clipboard(){
@@ -80,6 +82,3 @@
     </script>
 </body>
 </html>
-
-
-
