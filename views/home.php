@@ -21,7 +21,7 @@
                 <h2>Export to ICS</h2>
                 <div class="form-group">
                     <div id="textSelector">
-                        <textarea id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?" readonly></textarea>
+                        <textarea id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?courses=" readonly></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,7 +47,7 @@
                             <tr style="border:none;width:100%;">
                                 <td style="border:none;width:100%;">
                                     <div class="btn-group coursename-btn" data-toggle="buttons">
-                                        <label class="btn btn-outline-dark btn-block" onclick="toggleGetAttribute('courses[]','<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
+                                        <label class="btn btn-outline-dark btn-block" onclick="toggleCourseCSV('<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
                                             <input type="checkbox" name="courses[]"> 
                                             <div class="courseName"><?php echo($course["Name"]) ?></div>
                                         </label>
@@ -64,6 +64,36 @@
     </div>
 
     <script>
+        function toggleCourseCSV(course){
+            var linkElement = document.getElementById("linkGenerator");
+            var link = linkElement.placeholder;
+
+            var newLink;
+
+            if (link.includes(course)){
+                if (link.includes(","+course)){
+                    newLink = link.replace(","+course, "");
+                } else {
+                    newLink = link.replace(course, "");
+                }
+            } else {
+                if (link.slice(-1) === "="){
+                    newLink = link + course;
+                } else {
+                    newLink = link + "," + course;
+                }               
+            }
+
+            linkElement.placeholder = newLink;
+
+            document.getElementById("downloadICS").href= linkElement.placeholder;
+
+            window.setTimeout(function(){
+                $('#searchText').get(0).focus();
+            }, 100);
+
+        }
+
         function toggleGetAttribute(attributeName, attributeValue){
             var linkElement = document.getElementById("linkGenerator");
             var link = linkElement.placeholder;
@@ -71,14 +101,7 @@
                 linkElement.placeholder = link.replace("&"+attributeName+"="+attributeValue, "");
             } else {
                 linkElement.placeholder += "&"+attributeName+"="+attributeValue;
-            }
-
-            document.getElementById("downloadICS").href= linkElement.placeholder;
-
-            window.setTimeout(function(){
-                $('#searchText').get(0).focus();
-            }, 100);
-            
+            }            
         }
 
         function clipboard(){
