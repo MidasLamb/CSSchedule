@@ -21,7 +21,7 @@
                 <h2>Export to ICS</h2>
                 <div class="form-group">
                     <div id="textSelector">
-                        <textarea id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?" readonly></textarea>
+                        <textarea id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?courses=" readonly></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -32,12 +32,26 @@
             <div class="col-md-8 order-md-1">
                 <h2>Select courses</h2>
                 <div class="form-group">
-                    <input id="searchText" class="form-control" type="text" placeholder="Search" oninput="filter(this.value)">
+                    <input id="searchText" class="form-control" type="text" placeholder="Search" oninput="filter()">
                 </div>
                 <table class="table table-sm" style="width:100%">
                     <thead>
                         <tr>
-                            <th style="font-size:1.3em;">Coursename</th>
+                            <th style="font-size:1.3em;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                Coursename
+                                </div>
+                                <div class="col-md-6 float-right">
+                                    <div class="btn-group coursename-btn float-right" data-toggle="buttons">
+                                        <label id="showSelectedSwitch" class="btn btn-outline-dark btn-block" onclick="showSelectedToggle()">
+                                            <input type="checkbox"> 
+                                            Show selected Courses only.
+                                        </label>
+                                    </div>  
+                                </div>
+                            </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +61,7 @@
                             <tr style="border:none;width:100%;">
                                 <td style="border:none;width:100%;">
                                     <div class="btn-group coursename-btn" data-toggle="buttons">
-                                        <label class="btn btn-outline-dark btn-block" onclick="toggleGetAttribute('courses[]','<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
+                                        <label class="btn btn-outline-dark btn-block" onclick="toggleCourseCSV('<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
                                             <input type="checkbox" name="courses[]"> 
                                             <div class="courseName"><?php echo($course["Name"]) ?></div>
                                         </label>
@@ -64,6 +78,37 @@
     </div>
 
     <script>
+        function toggleCourseCSV(course){
+            var linkElement = document.getElementById("linkGenerator");
+            var link = linkElement.placeholder;
+
+            var newLink;
+
+            if (link.includes(course)){
+                if (link.includes(","+course)){
+                    newLink = link.replace(","+course, "");
+                } else {
+                    newLink = link.replace(course, "");
+                }
+            } else {
+                if (link.slice(-1) === "="){
+                    newLink = link + course;
+                } else {
+                    newLink = link + "," + course;
+                }               
+            }
+
+            linkElement.placeholder = newLink;
+
+            document.getElementById("downloadICS").href= linkElement.placeholder;
+
+            if ($("#searchText").isOnScreen()){
+                window.setTimeout(function(){
+                    $('#searchText').get(0).focus();
+                }, 100);
+            }
+        }
+
         function toggleGetAttribute(attributeName, attributeValue){
             var linkElement = document.getElementById("linkGenerator");
             var link = linkElement.placeholder;
@@ -71,14 +116,7 @@
                 linkElement.placeholder = link.replace("&"+attributeName+"="+attributeValue, "");
             } else {
                 linkElement.placeholder += "&"+attributeName+"="+attributeValue;
-            }
-
-            document.getElementById("downloadICS").href= linkElement.placeholder;
-
-            window.setTimeout(function(){
-                $('#searchText').get(0).focus();
-            }, 100);
-            
+            }            
         }
 
         function clipboard(){
@@ -89,27 +127,72 @@
 
         var lastSearchString = "";
 
-        function filter(searchText){
-            searchText = searchText.toLowerCase();
+        function filter(){
+            var searchText = $("#searchText").val().toLowerCase();
             var group;
             if (searchText.length > lastSearchString.length){
-                group = $("table tbody tr:visible");
+                group = $("table tbody tr");
             } else {
                 group = $("table tbody tr");
             }
             group.each(function(){
                 if ($(this).find(".courseName").text().toLowerCase().includes(searchText)){
-                    $(this).show();
+                    $(this).removeClass("hiddenBySearch");
                 } else {
-                    $(this).hide();
+                    $(this).addClass("hiddenBySearch");
                 }
             });
-
             lastSearchString = searchText;
         }
+
+        var showSelected = false;
+
+        function showSelectedToggle(){
+            showSelected = !showSelected;
+            showSelectedCourses();
+        }
+
+        function showSelectedCourses(){
+            if (showSelected){
+                $("table tbody tr").each(function(){
+                    if ($(this).html().includes("active")){
+                        $(this).removeClass("hiddenByShowSelectedCourses");
+                    } else {
+                        $(this).addClass("hiddenByShowSelectedCourses");
+                    }
+                });
+            } else {
+                $("table tbody tr").each(function(){
+                    $(this).removeClass("hiddenByShowSelectedCourses");
+                });
+            }
+        }
+
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script>
+        $.fn.isOnScreen = function(){
+	
+            var win = $(window);
+            
+            var viewport = {
+                top : win.scrollTop(),
+                left : win.scrollLeft()
+            };
+            viewport.right = viewport.left + win.width();
+            viewport.bottom = viewport.top + win.height();
+            
+            var bounds = this.offset();
+            bounds.right = bounds.left + this.outerWidth();
+            bounds.bottom = bounds.top + this.outerHeight();
+            
+            return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+            
+        };
+
+    </script>
 </body>
 </html>

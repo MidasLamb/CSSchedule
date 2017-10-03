@@ -36,14 +36,21 @@ class EntryPoint{
 
     public static function calendar(){
         if (isset($_GET["courses"])){
-            header("content-type:text/calendar");
+            if (is_array($_GET["courses"])){
+                $courses = $_GET["courses"]; //For backwards compatibility.
+            } else {
+                $courses = explode(',', $_GET["courses"]);
+            }
+            
+
+            //header("content-type:text/calendar");
             $str = new Str();
             $str->addLine("BEGIN:VCALENDAR");
             $str->addLine("VERSION:2.0");
             $str->addLine("PRODID:-//midaslambrichts/cscalendar//cscalendar v1.0//EN");
             $str->addLine("X-WR-TIMEZONE:Europe/Brussels");
             $str->addLine("X-WR-CALNAME:CSSchedule");
-            foreach($_GET["courses"] as $courseId){
+            foreach($courses as $courseId){
                 $res = DBHandler::getCourseMoments($courseId);
                 while($row = $res->fetchArray()){
                     $str->addContent(Course::createICSFromDBRow($row));
