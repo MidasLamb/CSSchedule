@@ -1,4 +1,17 @@
-# CS Schedule
+# CSSchedule
+
+## Introduction
+
+This repository contains the code for a site that generates ICS calendar files with the individual schedules of Computer Science students at KU Leuven.
+This schedule can be imported in most calendar apps, such as Google calendar or iCal. Students who follow the Dutch Master's Programme can also select the English counterparts of their courses to show up in the schedule.
+
+## Usage
+
+To generate an ICS file, the user simply marks the courses they want to include in the list. Afterwards, the user can generate the corresponding ICS calendar by clicking the "Download ICS File" button.
+
+![Screenshot Usage](/images/Screenshot_20171003_150328.png)
+
+As the web-application adds the selected courses to the URL of the webpage, the selected choice can easily be saved and shared with other students by simply copying the URL of the page, either by manually selecting it, or by clicking the "Copy!" button.
 
 ## How to pull
 
@@ -14,3 +27,7 @@ Composer is a package manager for PHP. Install Composer and install it to the pr
     $ php composer.phar install
     $ php composer.phar dumpautoload -o
 ```
+
+## About the author
+
+This repository is created and maintained by Midas Lambrichts, Computer Science student at KU Leuven. Contributions to this repository are welcomed in the form of pull requests.
