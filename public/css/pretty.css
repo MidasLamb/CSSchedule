@@ -34,7 +34,7 @@ td {
 @media only screen and (min-width : 992px) {
     .btn-outline-dark:hover:not(.active) {
         color: #fff;
-        background-color: #343a40;
+        background-color: #AABAC5;
     }
     
     .coursename-btn {

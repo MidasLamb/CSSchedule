@@ -24,8 +24,10 @@ class EntryPoint{
         $courseArray = [];
         $res = DBHandler::getCourses();
         while($row = $res->fetchArray()){
-            $courseArray[] = $row;
+            $courseArray[$row["Name"]] = $row;
         }
+
+        ksort($courseArray);
 
         ob_start();
         include "views/home.php";

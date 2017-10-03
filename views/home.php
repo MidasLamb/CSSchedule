@@ -61,7 +61,7 @@
                             <tr style="border:none;width:100%;">
                                 <td style="border:none;width:100%;">
                                     <div class="btn-group coursename-btn" data-toggle="buttons">
-                                        <label class="btn btn-outline-dark btn-block" onclick="toggleCourseCSV('<?php echo($course["Id"]) ?>')" value="<?php echo($course["Id"]) ?>">
+                                        <label class="btn btn-outline-dark btn-block" onclick="toggleCourseCSV('<?php echo($course["Id"]) ?>')" id="<?php echo($course["Id"]) ?>">
                                             <input type="checkbox" name="courses[]"> 
                                             <div class="courseName"><?php echo($course["Name"]) ?></div>
                                         </label>
@@ -99,8 +99,12 @@
             }
 
             linkElement.placeholder = newLink;
-
             document.getElementById("downloadICS").href= linkElement.placeholder;
+
+            var courseCSV = newLink.split("?")[1];
+            document.cookie = courseCSV + ";expires=Thu, 2 Aug 2018 12:00:00 UTC";
+
+            JSON.stringify("test");
 
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
@@ -192,6 +196,15 @@
             return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
             
         };
+
+        $(document).ready(function(){
+            var cookies = document.cookie;
+            var courses = cookies.split("=")[1].split(",");
+            courses.forEach(function(course, index){
+                toggleCourseCSV(course);
+                $("#"+course).addClass("active");
+            });
+        });
 
     </script>
 </body>
