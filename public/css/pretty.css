@@ -1,4 +1,12 @@
 
+.hiddenByShowSelectedCourses {
+    display:none;
+}
+
+.hiddenBySearch {
+    display:none;
+}
+
 .courseName{
     font-size:0.75em;
 }
