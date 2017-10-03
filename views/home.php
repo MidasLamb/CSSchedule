@@ -21,7 +21,7 @@
                 <h2>Export to ICS</h2>
                 <div class="form-group">
                     <div id="textSelector">
-                        <input id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?" readonly>
+                        <textarea id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?" readonly></textarea>
                     </div>
                 </div>
                 <div class="form-group">
