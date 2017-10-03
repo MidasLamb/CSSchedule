@@ -43,7 +43,7 @@ class EntryPoint{
             }
             
 
-            //header("content-type:text/calendar");
+            header("content-type:text/calendar");
             $str = new Str();
             $str->addLine("BEGIN:VCALENDAR");
             $str->addLine("VERSION:2.0");
