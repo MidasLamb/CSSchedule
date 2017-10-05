@@ -91,13 +91,9 @@
                     newLink = link.replace(course, "");
                 }
             } else {
-                if (link.slice(-1) === "="){
-                    newLink = link + course;
-                } else {
-                    newLink = link + "," + course;
-                }               
+		newLink = link + "," + course;
             }
-
+	    newLink = newLink.replace("=,","=");
             linkElement.placeholder = newLink;
             document.getElementById("downloadICS").href= linkElement.placeholder;
 
