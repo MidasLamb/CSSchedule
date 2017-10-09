@@ -7,6 +7,7 @@
     <title>CSSchedule</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/pretty.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body style="padding-top:5rem">
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
@@ -31,29 +32,19 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h2>Select courses</h2>
-                <div class="form-group">
+                <div class="input-group">
                     <input id="searchText" class="form-control" type="text" placeholder="Search" oninput="filter()">
+                    <span class="input-group-btn">
+                        <button class="btn btn-outline-dark"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i></button>
+                        <div class="btn-group coursename-btn" data-toggle="buttons">
+                            <label id="showSelectedSwitch" class="btn btn-outline-dark btn-block" onclick="showSelectedToggle()">
+                                <input type="checkbox"> 
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </label>
+                        </div> 
+                    </span>
                 </div>
                 <table class="table table-sm" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th style="font-size:1.3em;">
-                            <div class="row">
-                                <div class="col-md-6">
-                                Coursename
-                                </div>
-                                <div class="col-md-6 float-right">
-                                    <div class="btn-group coursename-btn float-right" data-toggle="buttons">
-                                        <label id="showSelectedSwitch" class="btn btn-outline-dark btn-block" onclick="showSelectedToggle()">
-                                            <input type="checkbox"> 
-                                            Show selected Courses only.
-                                        </label>
-                                    </div>  
-                                </div>
-                            </div>
-                            </th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <?php
                             foreach($courseArray as $course){
