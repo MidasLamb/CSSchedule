@@ -35,12 +35,7 @@
                 <div class="input-group">
                     <input id="searchText" class="form-control" type="text" placeholder="Search" oninput="filter()">
                     <span class="input-group-btn">
-                        <div class="btn-group coursename-btn" data-toggle="buttons">
-                            <label class="btn btn-outline-dark btn-block">
-                                <input type="checkbox"> 
-                                <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
-                            </label>
-                        </div>
+                        <button class="btn btn-outline-dark"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i></button>
                         <div class="btn-group coursename-btn" data-toggle="buttons">
                             <label id="showSelectedSwitch" class="btn btn-outline-dark btn-block" onclick="showSelectedToggle()">
                                 <input type="checkbox"> 
