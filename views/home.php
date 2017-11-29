@@ -151,7 +151,7 @@
         }
 
         function showSelectedCourses(){
-            if (showSelected){
+            if ($("#showSelectedSwitch").hasClass("active")){
                 $("table tbody tr").each(function(){
                     if ($(this).html().includes("active")){
                         $(this).removeClass("hiddenByShowSelectedCourses");
