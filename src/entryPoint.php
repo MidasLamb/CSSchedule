@@ -23,7 +23,7 @@ class EntryPoint{
     public static function home(){
         $courseArray = [];
         $res = DBHandler::getCourses();
-        foreach($res->fetchAll() as $row){
+        foreach($res as $row){
             $courseArray[$row["Name"]] = $row;
         }
 
@@ -54,7 +54,7 @@ class EntryPoint{
             $str->addLine("X-WR-CALNAME:CSSchedule");
             foreach($courses as $courseId){
                 $res = DBHandler::getCourseMoments($courseId);
-                foreach($res->fetchArray() as $row){
+                foreach($res as $row){
                     $str->addContent(Course::createICSFromDBRow($row));
                 }
             }

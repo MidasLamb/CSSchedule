@@ -28,7 +28,6 @@ class DBHandler{
         $stmt->execute();
 
         foreach($courses as $courseId => $courseName){
-            
             $stmt = $db->prepare("INSERT INTO Courses VALUES (:CourseId, :CourseName)");
             $stmt->bindValue(':CourseId', $courseId);
             $stmt->bindValue(':CourseName', $courseName);
@@ -39,15 +38,16 @@ class DBHandler{
     public static function getCourseMoments($courseId){
         $db = self::getDB();
         $stmt = $db->prepare('SELECT * FROM CourseMoments WHERE CourseId = :courseId');
-        $stmt->bindValue(':courseId', $courseId);
-        $results = $stmt->execute();
-        return $results;
+        $stmt->execute([
+            ':courseId' => $courseId
+        ]);
+        return $stmt->fetchAll();
     }
 
     public static function getCourses(){
         $db = self::getDB();
         $res = $db->query("SELECT * FROM Courses");
-        return $res;
+        return $res->fetchAll();
     }
 
     public static function getDB(){

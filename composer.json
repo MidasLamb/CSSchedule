@@ -17,10 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Source\\": "src/",
-            "Source\\ParseData\\": "src/parsedata/",
-            "Source\\Utility\\": "src/utility/",
-            "Source\\DB\\": "src/db/"
+            "Source\\": "src/"
         }
     }
 }

@@ -22,8 +22,6 @@ class Parser{
             $regex = '#<i><b>(.*?)</i>#';
             $res = preg_match_all($regex, $fullpage, $matches);
             $parsedDays = $matches[1];
-            var_dump($parsedDays);
-            die();
 
             foreach($document->getElementsByTagName('table') as $index => $htmltable){
                 foreach($htmltable->getElementsByTagName('tr') as $htmlrow){
@@ -37,14 +35,11 @@ class Parser{
                 }
             }   
         }
-
-        var_dump($courses);
-
         return $courses;
     }
 
     public static function parseIDsForNames($courseIds, $backupurls){
-        $guzzleClient = new \GuzzleHttp\Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false, ), ));
+        $guzzleClient = new Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false, ), ));
         
         $courseIdNameMap = [];
         /* Uses the ECTS Page for the name, but is way slower.
