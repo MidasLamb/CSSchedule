@@ -51,6 +51,6 @@ class DBHandler{
     }
 
     public static function getDB(){
-        return new \SQLite3("database/db.sqlite3");
+        return new \PDO('sqlite:'.__DIR__.'/../../database/db.sqlite3');
     }
 }

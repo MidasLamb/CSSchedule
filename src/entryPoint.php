@@ -23,7 +23,7 @@ class EntryPoint{
     public static function home(){
         $courseArray = [];
         $res = DBHandler::getCourses();
-        while($row = $res->fetchArray()){
+        foreach($res->fetchAll() as $row){
             $courseArray[$row["Name"]] = $row;
         }
 
@@ -54,7 +54,7 @@ class EntryPoint{
             $str->addLine("X-WR-CALNAME:CSSchedule");
             foreach($courses as $courseId){
                 $res = DBHandler::getCourseMoments($courseId);
-                while($row = $res->fetchArray()){
+                foreach($res->fetchArray() as $row){
                     $str->addContent(Course::createICSFromDBRow($row));
                 }
             }
@@ -65,14 +65,28 @@ class EntryPoint{
     }
 
     public static function updateDB(){
+
+        $currentYear = intval(date('y'));
+        $september = strtotime('first day of september this year');
+        $now = time();
+        if ($september < $now){
+            // We're currently in first semester;
+            $nextYear = $currentYear + 1;
+            $educationYear = "$currentYear$nextYear";
+        } else {
+            // We're currently in the second semester
+            $prevYear = $currentYear - 1;
+            $educationYear = "$prevYear$currentYear";
+        }
+
         $urls = [
-            'http://people.cs.kuleuven.be/~btw/roosters1718/cws_semester_1.html',
-            'http://people.cs.kuleuven.be/~btw/roosters1718/cws_semester_2.html'
+            "http://people.cs.kuleuven.be/~btw/roosters$educationYear/cws_semester_1.html",
+            "http://people.cs.kuleuven.be/~btw/roosters$educationYear/cws_semester_2.html"
         ];
+
         $groupedByCourse = Parser::parseURLsForSchedule($urls);
 
         $courseIdNameMap = Parser::parseIDsForNames(array_keys($groupedByCourse), $urls);
-
 
         DBHandler::updateDatabaseCourses($courseIdNameMap);
         DBHandler::updateDatabaseCourseMoments($groupedByCourse);

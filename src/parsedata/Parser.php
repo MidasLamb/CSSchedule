@@ -2,24 +2,31 @@
 
 namespace Source\ParseData;
 
+use GuzzleHttp\Client;
+
 class Parser{
     public static function parseURLsForSchedule($arrayOfURLs){
-        $guzzleClient = new \GuzzleHttp\Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false, ), ));
+        $guzzleClient = new Client();
         $courses = [];
 
         foreach($arrayOfURLs as $url){
             $response = $guzzleClient->request('GET', $url);
             
-            $fullpage = $response->getBody();
+            $fullpage = (string) $response->getBody();
 
+            libxml_use_internal_errors(true);
+            $document = new \DomDocument();
+            $succesfullRead = $document->loadHTML($fullpage);
+
+            // Fetch the days 
             $regex = '#<i><b>(.*?)</i>#';
             $res = preg_match_all($regex, $fullpage, $matches);
             $parsedDays = $matches[1];
-            libxml_use_internal_errors(true);
-            $document = new \DomDocument();
-            $document->loadHTML($fullpage);
+            var_dump($parsedDays);
+            die();
+
             foreach($document->getElementsByTagName('table') as $index => $htmltable){
-                foreach($htmltable->childNodes as $htmlrow){
+                foreach($htmltable->getElementsByTagName('tr') as $htmlrow){
                     $course = new Course();
                     $course->datumString = $parsedDays[$index];
                     $course->timeString = $htmlrow->childNodes[0]->textContent;
@@ -30,6 +37,8 @@ class Parser{
                 }
             }   
         }
+
+        var_dump($courses);
 
         return $courses;
     }
