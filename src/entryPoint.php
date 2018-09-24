@@ -2,8 +2,8 @@
 
 namespace Source;
 
-use Source\ParseData\Course;
-use Source\ParseData\Parser;
+use Source\Parsedata\Course;
+use Source\Parsedata\Parser;
 use Source\Utility\Str;
 use Source\DB\DBHandler;
 

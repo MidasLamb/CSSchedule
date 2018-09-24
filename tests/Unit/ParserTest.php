@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Source\ParseData\Parser;
+use Source\Parsedata\Parser;
 
 class ParserTest extends TestCase
 {

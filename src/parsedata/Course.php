@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\ParseData;
+namespace Source\Parsedata;
 
 use Source\Utility\Str;
 
