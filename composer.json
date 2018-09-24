@@ -1,11 +1,12 @@
 {
-    "name": "midas/cwschedule",
+    "name": "midas/csschedule",
     "type": "project",
     "license": "MIT",
+    "description": "A website to show the schedule of CS students of the KU Leuven.",
     "authors": [
         {
             "name": "Midas Lambrichts",
-            "email": "midas_lambrichts@hotmail.com"
+            "email": "midaslamb@gmail.com"
         }
     ],
     "require": {
@@ -14,7 +15,8 @@
         "ext-pdo_sqlite": "*"
     },
     "require-dev": {
-        "kint-php/kint": "^2.2"
+        "kint-php/kint": "^2.2",
+        "phpunit/phpunit": "^6.5"
     },
     "autoload": {
         "psr-4": {

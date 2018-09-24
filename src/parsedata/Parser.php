@@ -14,27 +14,38 @@ class Parser{
             
             $fullpage = (string) $response->getBody();
 
-            libxml_use_internal_errors(true);
-            $document = new \DomDocument();
-            $succesfullRead = $document->loadHTML($fullpage);
+            $foundCourses = self::parseHTMLForCourses($fullpage);
+            foreach($foundCourses as $id => $foundCourse){
+                $courses[$id][] = $foundCourse;
+            }
 
-            // Fetch the days 
-            $regex = '#<i><b>(.*?)</i>#';
-            $res = preg_match_all($regex, $fullpage, $matches);
-            $parsedDays = $matches[1];
-
-            foreach($document->getElementsByTagName('table') as $index => $htmltable){
-                foreach($htmltable->getElementsByTagName('tr') as $htmlrow){
-                    $course = new Course();
-                    $course->datumString = $parsedDays[$index];
-                    $course->timeString = $htmlrow->childNodes[0]->textContent;
-                    $course->placeString = $htmlrow->childNodes[2]->textContent;
-                    $course->nameString = $htmlrow->childNodes[5]->textContent;
-                    $course->url = $htmlrow->childNodes[5]->firstChild->attributes->getNamedItem("href")->textContent;
-                    $courses[$course->getCourseID()][] = $course;
-                }
-            }   
         }
+        return $courses;
+    }
+
+    public static function parseHTMLForCourses($html) {
+        $courses = [];
+        libxml_use_internal_errors(true);
+        $document = new \DomDocument();
+        $succesfullRead = $document->loadHTML($html);
+
+        // Fetch the days 
+        $regex = '#<i><b>(.*?)</i>#';
+        $res = preg_match_all($regex, $html, $matches);
+        $parsedDays = $matches[1];
+
+        foreach($document->getElementsByTagName('table') as $index => $htmltable){
+            foreach($htmltable->getElementsByTagName('tr') as $htmlrow){
+                $course = new Course();
+                $course->datumString = $parsedDays[$index];
+                $course->timeString = $htmlrow->childNodes[0]->textContent;
+                $course->placeString = $htmlrow->childNodes[2]->textContent;
+                $course->nameString = $htmlrow->childNodes[5]->textContent;
+                $course->url = $htmlrow->childNodes[5]->firstChild->attributes->getNamedItem("href")->textContent;
+                $courses[$course->getCourseID()][] = $course;
+            }
+        }   
+
         return $courses;
     }
 
