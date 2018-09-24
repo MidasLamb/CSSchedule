@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f8e471774cfea4e3ea400434a7850f94",
+    "content-hash": "5b87cb4e02d507699e1d3016eb8edcc8",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -304,7 +304,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2.0"
+        "php": "^7.2.0",
+        "ext-pdo_sqlite": "*"
     },
     "platform-dev": []
 }
