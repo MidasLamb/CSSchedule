@@ -47,8 +47,8 @@
                 <table class="table table-sm" style="width:100%">
                     <tbody>
                         <?php
-                            foreach($courseArray as $course){
-                        ?>
+                            foreach ($courseArray as $course) {
+                                ?>
                             <tr style="border:none;width:100%;">
                                 <td style="border:none;width:100%;">
                                     <div class="btn-group coursename-btn" data-toggle="buttons">

@@ -4,14 +4,16 @@ namespace Source\Parsedata;
 
 use Source\Utility\Str;
 
-class Course{
+class Course
+{
     public $datumString;
     public $timeString;
     public $placeString;
     public $nameString;
     public $url;
 
-    public function getICSString(){
+    public function getICSString()
+    {
         $str = new Str();
         $str->addLine("BEGIN:VEVENT");
         $str->addLine("UID:".$this->constructUID());
@@ -24,17 +26,20 @@ class Course{
         return $str->getString();
     }
 
-    public function getCourseID(){
+    public function getCourseID()
+    {
         $regex = '#/([^/]*?).htm#';
         preg_match_all($regex, $this->url, $matches);
         return $matches[1][0];
     }
 
-    public function constructUID(){
+    public function constructUID()
+    {
         return hash("md5", $this->datumString.$this->timeString.$this->placeString.$this->nameString.$this->url)."@midcalendar.com";
     }
 
-    public function constructStartTimeStamp(){
+    public function constructStartTimeStamp()
+    {
         $dateregex = '# (.*?):#';
         preg_match_all($dateregex, $this->datumString, $dateMatches);
         $date = $dateMatches[1][0];
@@ -47,7 +52,8 @@ class Course{
         return $dateobj->format('Ymd\THis');
     }
 
-    public function constructEndTimeStamp(){
+    public function constructEndTimeStamp()
+    {
         $dateregex = '# (.*?):#';
         preg_match_all($dateregex, $this->datumString, $dateMatches);
         $date = $dateMatches[1][0];
@@ -60,7 +66,8 @@ class Course{
         return $dateobj->format('Ymd\THis');
     }
 
-    public static function createICSFromDBRow($row){
+    public static function createICSFromDBRow($row)
+    {
         $str = new Str();
         $str->addLine("BEGIN:VEVENT");
         $str->addLine("UID:".self::createUIDFromDBRow($row));
@@ -73,7 +80,8 @@ class Course{
         return $str->getString();
     }
 
-    public static function createUIDFromDBRow($row){
+    public static function createUIDFromDBRow($row)
+    {
         return hash("md5", $row['CourseId'].$row['DTStart'].$row['Location'])."@midcalendar.com";
     }
 }
