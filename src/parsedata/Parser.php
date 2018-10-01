@@ -18,7 +18,11 @@ class Parser
 
             $foundCourses = self::parseHTMLForCourses($fullpage);
             foreach ($foundCourses as $id => $foundCourse) {
-                $courses[$id][] = $foundCourse;
+                if (array_key_exists($id, $courses)){
+                    $courses[$id] = array_merge($foundCourse, $courses[$id]);
+                } else {
+                    $courses[$id] = $foundCourse;
+                }
             }
         }
         return $courses;
@@ -38,7 +42,7 @@ class Parser
 
         foreach ($document->getElementsByTagName('table') as $index => $htmltable) {
             foreach ($htmltable->getElementsByTagName('tr') as $htmlrow) {
-                $course = new Course();
+                $course = new CourseMoment();
                 $course->datumString = $parsedDays[$index];
                 $course->timeString = $htmlrow->childNodes[0]->textContent;
                 $course->placeString = $htmlrow->childNodes[2]->textContent;

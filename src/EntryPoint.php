@@ -79,7 +79,7 @@ class EntryPoint
 
     public static function updateDB()
     {
-        $educactionYear = self::getCurrentEducationYear();
+        $educationYear = self::getCurrentEducationYear();
 
         $urls = [
             "http://people.cs.kuleuven.be/~btw/roosters$educationYear/cws_semester_1.html",

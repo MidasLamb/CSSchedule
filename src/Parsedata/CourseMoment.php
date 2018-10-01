@@ -4,7 +4,7 @@ namespace Source\Parsedata;
 
 use Source\Utility\Str;
 
-class Course
+class CourseMoment
 {
     public $datumString;
     public $timeString;
