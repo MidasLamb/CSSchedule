@@ -22,7 +22,7 @@
                 <h2>Export to ICS</h2>
                 <div class="form-group">
                     <div id="textSelector">
-                        <textarea id="linkGenerator" class="form-control" type="text" placeholder="https://csschedule.xyz/calendar/?courses=" readonly></textarea>
+                        <textarea id="linkGenerator" class="form-control" type="text" placeholder="" readonly></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,8 +47,8 @@
                 <table class="table table-sm" style="width:100%">
                     <tbody>
                         <?php
-                            foreach($courseArray as $course){
-                        ?>
+                            foreach ($courseArray as $course) {
+                                ?>
                             <tr style="border:none;width:100%;">
                                 <td style="border:none;width:100%;">
                                     <div class="btn-group coursename-btn" data-toggle="buttons">
@@ -69,6 +69,15 @@
     </div>
 
     <script>
+        function setHostName(){
+            var protocol = location.protocol.concat("//");
+            var host = window.location.hostname;
+            document.getElementById('linkGenerator').placeholder = protocol + host + '/calendar/?courses=';
+            document.getElementById("downloadICS").href = protocol + host + '/calendar/?courses=';
+        }
+
+        setHostName();
+
         function toggleCourseCSV(course){
             var linkElement = document.getElementById("linkGenerator");
             var link = linkElement.placeholder;
@@ -89,9 +98,7 @@
             document.getElementById("downloadICS").href= linkElement.placeholder;
 
             var courseCSV = newLink.split("?")[1];
-            document.cookie = courseCSV + ";expires=Thu, 2 Aug 2018 12:00:00 UTC";
-
-            JSON.stringify("test");
+            document.cookie = courseCSV + ";expires=Thu, 1 Aug 2019 12:00:00 UTC";
 
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
@@ -144,7 +151,7 @@
         }
 
         function showSelectedCourses(){
-            if (showSelected){
+            if ($("#showSelectedSwitch").hasClass("active")){
                 $("table tbody tr").each(function(){
                     if ($(this).html().includes("active")){
                         $(this).removeClass("hiddenByShowSelectedCourses");
@@ -186,11 +193,13 @@
 
         $(document).ready(function(){
             var cookies = document.cookie;
-            var courses = cookies.split("=")[1].split(",");
-            courses.forEach(function(course, index){
-                toggleCourseCSV(course);
-                $("#"+course).addClass("active");
-            });
+            if (cookies){
+                var courses = cookies.split("=")[1].split(",");
+                courses.forEach(function(course, index){
+                    toggleCourseCSV(course);
+                    $("#"+course).addClass("active");
+                });
+            }
         });
 
     </script>
