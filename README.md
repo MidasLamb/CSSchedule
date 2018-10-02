@@ -16,16 +16,16 @@ As the web-application adds the selected courses to the URL of the webpage, the 
 ### Add ICS link to Outlook
 
 1. Click on "Agenda" in the right corner
-![Screenshot Usage](/images/Schermafdruk van 2018-10-02 11-11-59.png)
 
-2. Click right on "Andere Agenda's" and select "Agenda Openen"
-![Screenshot Usage](/images/Schermafdruk van 2018-10-02 11-12-16.png)
+![Screenshot Agenda](/images/Schermafdruk van 2018-10-02 11-11-59.png)
 
-3. Past the link and click on "Openen"
-![Screenshot Usage](/images/Schermafdruk van 2018-10-02 11-17-05.png)
+1. Click right on "Andere Agenda's" and select "Agenda Openen"
 
+![Screenshot Open Agenda](/images/Schermafdruk van 2018-10-02 11-12-16.png)
 
+1. Past the link and click on "Openen"
 
+![Screenshot Past Link](/images/Schermafdruk van 2018-10-02 11-17-05.png)
 
 
 ## How to pull
