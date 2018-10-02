@@ -13,6 +13,21 @@ To generate an ICS file, the user simply marks the courses they want to include 
 
 As the web-application adds the selected courses to the URL of the webpage, the selected choice can easily be saved and shared with other students by simply copying the URL of the page, either by manually selecting it, or by clicking the "Copy!" button.
 
+### Add ICS link to Outlook
+
+1. Click on "Agenda" in the right corner
+![Screenshot Usage](/images/Schermafdruk van 2018-10-02 11-11-59.png)
+
+2. Click right on "Andere Agenda's" and select "Agenda Openen"
+![Screenshot Usage](/images/Schermafdruk van 2018-10-02 11-12-16.png)
+
+3. Past the link and click on "Openen"
+![Screenshot Usage](/images/Schermafdruk van 2018-10-02 11-17-05.png)
+
+
+
+
+
 ## How to pull
 
 Composer is a package manager for PHP. Install Composer and install it to the project.
