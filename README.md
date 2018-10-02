@@ -21,11 +21,20 @@ As the web-application adds the selected courses to the URL of the webpage, the 
 
 2. Click right on "Andere Agenda's" and select "Agenda Openen"
 
-![Screenshot Open Agenda](images/OpenAgenda.png)
+![Screenshot Open Agenda](/images/OpenAgenda.png)
 
 3. Past the link and click on "Openen"
 
-![Screenshot Past Link](images/PastLink.png)
+![Screenshot Past Link](/images/PastLink.png)
+
+### Add ICS link to GMAIL
+1. Click on `plus` next to "De agenda van iemand and..." and select "Via URL"
+
+![Screenshot Via URL](/images/ViaURL.png)
+
+2. Paste the url and click on "Agenda toevoegen"
+
+![Screenshot Agenda Toevoegen](/images/AgendaToevoegen.png)
 
 
 ## How to pull
