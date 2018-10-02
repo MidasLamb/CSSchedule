@@ -1,8 +1,7 @@
 <?php
 
-
-chdir("..");
+chdir('..');
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-Source\EntryPoint::start();
+Source\EntryPoint::updateDB();
