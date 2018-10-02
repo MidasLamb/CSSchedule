@@ -17,15 +17,15 @@ As the web-application adds the selected courses to the URL of the webpage, the 
 
 1. Click on "Agenda" in the right corner
 
-![Screenshot Agenda](/images/Schermafdruk%20van%202018-10-02%2011-11-59.png)
+![Screenshot Agenda](/images/ClickAgenda.png)
 
 2. Click right on "Andere Agenda's" and select "Agenda Openen"
 
-![Screenshot Open Agenda](images/Schermafdruk%20van%202018-10-02%2011-12-16.png)
+![Screenshot Open Agenda](images/OpenAgenda.png)
 
 3. Past the link and click on "Openen"
 
-![Screenshot Past Link](images/Schermafdruk%20van%202018-10-02%2011-17-05.png)
+![Screenshot Past Link](images/PastLink.png)
 
 
 ## How to pull
