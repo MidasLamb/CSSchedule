@@ -1,5 +1,7 @@
 # CSSchedule
 
+![Logo](images/logo.svg)
+
 ## Introduction
 
 This repository contains the code for a site that generates ICS calendar files with the individual schedules of Computer Science students at KU Leuven.
