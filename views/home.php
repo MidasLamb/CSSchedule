@@ -218,7 +218,7 @@
 			  },
 			  "showLink": false,
 			  "content": {
-			    "message": "This website uses cookies to personalise content and to analyse our traffic."
+			    "message": "This website uses cookies to personalise content."
 			  }
 		})});
     </script>
