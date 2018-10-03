@@ -2,6 +2,15 @@
 
 ![Logo](images/logo.svg)
 
+## Overview
+
+- [Introduction](#introduction)
+- [Usage](#usage)
+    * [Add to Outlook](#add-ics-link-to-outlook)
+    * [Add to Gmail](#add-ics-link-to-gmail)
+- [How to pull](#how-to-pull)
+- [About the author](#about-the-author)
+
 ## Introduction
 
 This repository contains the code for a site that generates ICS calendar files with the individual schedules of Computer Science students at KU Leuven.
