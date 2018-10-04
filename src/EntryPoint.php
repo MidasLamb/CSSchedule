@@ -22,18 +22,16 @@ class EntryPoint
         }
     }
 
+    public static function compareCourses($a, $b){
+        return 0;
+    }
+
     public static function home()
     {
-        $courseArray = [];
-        $res = DBHandler::getCourses();
-        foreach ($res as $row) {
-            $courseArray[$row["Name"]] = $row;
-        }
-
-        ksort($courseArray);
+        $courseArray = DBHandler::getCourses();
 
         ob_start();
-        include "views/home.php";
+        include __DIR__.'/../views/home.php';
         $output = ob_get_clean();
 
         echo($output);
