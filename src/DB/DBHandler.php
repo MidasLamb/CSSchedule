@@ -51,7 +51,7 @@ class DBHandler
     public static function getCourses()
     {
         $db = self::getDB();
-        $res = $db->query("SELECT * FROM Courses");
+        $res = $db->query("SELECT * FROM Courses ORDER BY Name ASC");
         return $res->fetchAll();
     }
 
