@@ -2,7 +2,7 @@
 
 namespace Source;
 
-use Source\Parsedata\Course;
+use Source\Parsedata\CourseMoment;
 use Source\Parsedata\Parser;
 use Source\Utility\Str;
 use Source\DB\DBHandler;
@@ -39,7 +39,7 @@ class EntryPoint
         echo($output);
     }
 
-    public static function calendar()
+    public static function calendar($modifyHeader = true)
     {
         if (isset($_GET["courses"])) {
             if (is_array($_GET["courses"])) {
@@ -48,8 +48,10 @@ class EntryPoint
                 $courses = explode(',', $_GET["courses"]);
             }
             
+            if ($modifyHeader){
+                header("content-type:text/calendar");
+            }
 
-            header("content-type:text/calendar");
             $str = new Str();
             $str->addLine("BEGIN:VCALENDAR");
             $str->addLine("VERSION:2.0");
@@ -59,7 +61,7 @@ class EntryPoint
             foreach ($courses as $courseId) {
                 $res = DBHandler::getCourseMoments($courseId);
                 foreach ($res as $row) {
-                    $str->addContent(Course::createICSFromDBRow($row));
+                    $str->addContent(CourseMoment::createICSFromDBRow($row));
                 }
             }
             $str->addLine("END:VCALENDAR");
