@@ -14,7 +14,7 @@ class EntryPointTest extends TestCase
             EntryPoint::calendar(false);
             $this->assertTrue(true);
         } catch (\Throwable $e){
-            $this->fail('Exception/Error has been thrown.');
+            $this->fail("Exception/Error has been thrown.\r\n".$e->getMessage());
         }
     }
 
@@ -24,7 +24,7 @@ class EntryPointTest extends TestCase
             EntryPoint::home();
             $this->assertTrue(true);
         } catch (\Throwable $e){
-            $this->fail('Exception/Error has been thrown.');
+            $this->fail("Exception/Error has been thrown.\r\n".$e->getMessage());
         }
     }
 }
