@@ -33,6 +33,17 @@
                     <button type="button" class="btn btn-outline-primary" onclick="clipboard()">Copy</button>
                     <a class="btn btn-primary" href="https://csschedule.xyz/calendar?" download id="downloadICS">Download ICS File</a><br>
                 </div>
+
+                <h2>About CSSchedule</h2>
+                <div>
+                    CSSchedule is a program made by students, for students. It just parses the CS Department provided pages to get the place and moments for the courses. It is completely Open Source and can be found on Github (see below).
+                </div>
+
+                <h3 style="margin-top:5px;">Helping out</h3>
+                <div>
+                    The Source can be found on <b><a href="https://github.com/MidasLamb/CSSchedule">GitHub</a></b>. How to contribute is explained there. If there is something wrong, there is a bug, or you want a certain feature, you can just create an <b><a href="https://github.com/MidasLamb/CSSchedule/issues">issue</a></b> there.
+                </div>
+
             </div>
             <div class="col-md-8 order-md-1">
                 <h2>Select courses</h2>
