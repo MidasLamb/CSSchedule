@@ -39,7 +39,7 @@ class EntryPoint
         echo($output);
     }
 
-    public static function calendar()
+    public static function calendar($modifyHeader = true)
     {
         if (isset($_GET["courses"])) {
             if (is_array($_GET["courses"])) {
@@ -48,8 +48,10 @@ class EntryPoint
                 $courses = explode(',', $_GET["courses"]);
             }
             
+            if ($modifyHeader){
+                header("content-type:text/calendar");
+            }
 
-            header("content-type:text/calendar");
             $str = new Str();
             $str->addLine("BEGIN:VCALENDAR");
             $str->addLine("VERSION:2.0");
