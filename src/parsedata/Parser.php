@@ -42,12 +42,12 @@ class Parser
 
         foreach ($document->getElementsByTagName('table') as $index => $htmltable) {
             foreach ($htmltable->getElementsByTagName('tr') as $htmlrow) {
-                $course = new CourseMoment();
-                $course->datumString = $parsedDays[$index];
-                $course->timeString = $htmlrow->childNodes[0]->textContent;
-                $course->placeString = $htmlrow->childNodes[2]->textContent;
-                $course->nameString = $htmlrow->childNodes[5]->textContent;
-                $course->url = $htmlrow->childNodes[5]->firstChild->attributes->getNamedItem("href")->textContent;
+                $url = $htmlrow->childNodes[5]->firstChild->attributes->getNamedItem("href")->textContent;
+                $datumString = $parsedDays[$index];
+                $timeString = $htmlrow->childNodes[0]->textContent;
+                $placeString = $htmlrow->childNodes[2]->textContent;
+                $nameString = $htmlrow->childNodes[5]->textContent;
+                $course = new CourseMoment($url, $nameString, $timeString, $datumString, $placeString);
                 $courses[$course->getCourseID()][] = $course;
             }
         }

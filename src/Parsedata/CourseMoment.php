@@ -12,6 +12,14 @@ class CourseMoment
     public $nameString;
     public $url;
 
+    public function __construct($url, $nameString, $timeString, $datumString, $placeString){
+        $this->url = $url;
+        $this->nameString = $nameString;
+        $this->timeString = $timeString;
+        $this->datumString = $datumString;
+        $this->placeString = $placeString;
+    }
+
     public function getICSString()
     {
         $str = new Str();

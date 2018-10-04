@@ -2,7 +2,7 @@
 
 namespace Source;
 
-use Source\Parsedata\Course;
+use Source\Parsedata\CourseMoment;
 use Source\Parsedata\Parser;
 use Source\Utility\Str;
 use Source\DB\DBHandler;
@@ -59,7 +59,7 @@ class EntryPoint
             foreach ($courses as $courseId) {
                 $res = DBHandler::getCourseMoments($courseId);
                 foreach ($res as $row) {
-                    $str->addContent(Course::createICSFromDBRow($row));
+                    $str->addContent(CourseMoment::createICSFromDBRow($row));
                 }
             }
             $str->addLine("END:VCALENDAR");
