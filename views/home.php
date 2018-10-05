@@ -97,8 +97,8 @@
             linkElement.placeholder = newLink;
             document.getElementById("downloadICS").href= linkElement.placeholder;
 
-            var courseCSV = newLink.split("?")[1];
-            document.cookie = courseCSV + ";expires=Thu, 1 Aug 2019 12:00:00 UTC";
+            var courseCSV = newLink.split("?")[1].split("=")[1];
+	    localStorage.setItem("courses", courseCSV);
 
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
@@ -192,9 +192,9 @@
         };
 
         $(document).ready(function(){
-            var cookies = document.cookie;
-            if (cookies){
-                var courses = cookies.split("=")[1].split(",");
+            var courses = localStorage.getItem("courses");
+            if (courses){
+                var courses = courses.split(",");
                 courses.forEach(function(course, index){
                     toggleCourseCSV(course);
                     $("#"+course).addClass("active");
