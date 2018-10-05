@@ -24,6 +24,7 @@
         <div class="row">
             <div class="col-md-4 order-md-2">
                 <h2>Export to ICS</h2>
+                <p style="color:red" id="warning"></p>
                 <div class="form-group">
                     <div id="textSelector">
                         <textarea id="linkGenerator" class="form-control" type="text" placeholder="" readonly></textarea>
@@ -112,6 +113,8 @@
             var courseCSV = newLink.split("?")[1].split("=")[1];
             if (typeof(Storage) !== "undefined") {
 	    		localStorage.setItem("courses", courseCSV);
+	    	} else {
+	    		document.getElementById("warning").innerHTML = = "Because your browser doesn't support local storage, the selected subjects will not be saved."
 	    	}
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
@@ -214,6 +217,8 @@
 		                $("#"+course).addClass("active");
 		            });
 		        }
+		    } else {
+		    	document.getElementById("warning").innerHTML = = "Because your browser doesn't support local storage, the selected subjects will not be saved."
 		    }
         });
 
