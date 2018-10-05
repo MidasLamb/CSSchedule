@@ -111,7 +111,7 @@
             document.getElementById("downloadICS").href= linkElement.placeholder;
 
             var courseCSV = newLink.split("?")[1].split("=")[1];
-            if (typeof(Storage) !== "undefined") {
+            if (typeof(localStorage) !== "undefined") {
 	    		localStorage.setItem("courses", courseCSV);
 	    	} else {
 	    		document.getElementById("warning").innerHTML = = "Because your browser doesn't support local storage, the selected subjects will not be saved."
@@ -208,7 +208,7 @@
         };
 
         $(document).ready(function(){
-        	if (typeof(Storage) !== "undefined") {
+        	if (typeof(localStorage) !== "undefined") {
 		        var courses = localStorage.getItem("courses");
 		        if (courses){
 		            var courses = courses.split(",");
