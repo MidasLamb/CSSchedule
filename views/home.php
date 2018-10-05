@@ -109,8 +109,8 @@
             linkElement.placeholder = newLink;
             document.getElementById("downloadICS").href= linkElement.placeholder;
 
-            var courseCSV = newLink.split("?")[1];
-            document.cookie = courseCSV + ";expires=Thu, 1 Aug 2019 12:00:00 UTC";
+            var courseCSV = newLink.split("?")[1].split("=")[1];
+	    localStorage.setItem("courses", courseCSV);
 
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
@@ -204,9 +204,9 @@
         };
 
         $(document).ready(function(){
-            var cookies = document.cookie;
-            if (cookies){
-                var courses = cookies.split("=")[1].split(",");
+            var courses = localStorage.getItem("courses");
+            if (courses){
+                var courses = courses.split(",");
                 courses.forEach(function(course, index){
                     toggleCourseCSV(course);
                     $("#"+course).addClass("active");
@@ -214,6 +214,25 @@
             }
         });
 
+    </script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+	    window.addEventListener("load", function(){
+		    window.cookieconsent.initialise({
+			  "palette": {
+			    "popup": {
+			      "background": "#343a40"
+			    },
+			    "button": {
+			      "background": "#007bff"
+			    }
+			  },
+			  "showLink": false,
+			  "content": {
+			    "message": "This website uses cookies to personalise content."
+			  }
+		})});
     </script>
 </body>
 </html>
