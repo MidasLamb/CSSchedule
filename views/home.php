@@ -111,8 +111,8 @@
 
             var courseCSV = newLink.split("?")[1].split("=")[1];
             if (typeof(Storage) !== "undefined") {
-	    	localStorage.setItem("courses", courseCSV);
-	    }
+	    		localStorage.setItem("courses", courseCSV);
+	    	}
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
                     $('#searchText').get(0).focus();
