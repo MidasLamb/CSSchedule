@@ -1,5 +1,7 @@
 # CSSchedule
 
+![Logo](images/logo.svg)
+
 ## Overview
 
 - [Introduction](#introduction)
