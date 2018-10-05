@@ -24,6 +24,7 @@
         <div class="row">
             <div class="col-md-4 order-md-2">
                 <h2>Export to ICS</h2>
+                <p style="color:red" id="warning" hidden>Because your browser doesn't support local storage, the selected subjects will not be saved.</p>
                 <div class="form-group">
                     <div id="textSelector">
                         <textarea id="linkGenerator" class="form-control" type="text" placeholder="" readonly></textarea>
@@ -110,8 +111,11 @@
             document.getElementById("downloadICS").href= linkElement.placeholder;
 
             var courseCSV = newLink.split("?")[1].split("=")[1];
-	    localStorage.setItem("courses", courseCSV);
-
+            if (typeof(localStorage) !== "undefined") {
+	    		localStorage.setItem("courses", courseCSV);
+	    	} else {
+	    		document.getElementById("warning").style.display = "inline-block";
+	    	}
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
                     $('#searchText').get(0).focus();
@@ -204,14 +208,18 @@
         };
 
         $(document).ready(function(){
-            var courses = localStorage.getItem("courses");
-            if (courses){
-                var courses = courses.split(",");
-                courses.forEach(function(course, index){
-                    toggleCourseCSV(course);
-                    $("#"+course).addClass("active");
-                });
-            }
+        	if (typeof(localStorage) !== "undefined") {
+		        var courses = localStorage.getItem("courses");
+		        if (courses){
+		            var courses = courses.split(",");
+		            courses.forEach(function(course, index){
+		                toggleCourseCSV(course);
+		                $("#"+course).addClass("active");
+		            });
+		        }
+		    } else {
+		    	document.getElementById("warning").style.display = "inline-block";
+		    }
         });
 
     </script>
