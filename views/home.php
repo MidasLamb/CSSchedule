@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-md-4 order-md-2">
                 <h2>Export to ICS</h2>
-                <p style="color:red" id="warning"></p>
+                <p style="color:red" id="warning">Because your browser doesn't support local storage, the selected subjects will not be saved.</p>
                 <div class="form-group">
                     <div id="textSelector">
                         <textarea id="linkGenerator" class="form-control" type="text" placeholder="" readonly></textarea>
@@ -114,7 +114,7 @@
             if (typeof(localStorage) !== "undefined") {
 	    		localStorage.setItem("courses", courseCSV);
 	    	} else {
-	    		document.getElementById("warning").innerHTML = "Because your browser doesn't support local storage, the selected subjects will not be saved."
+	    		document.getElementById("warning").style.display = "block";
 	    	}
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
@@ -218,7 +218,7 @@
 		            });
 		        }
 		    } else {
-		    	document.getElementById("warning").innerHTML = = "Because your browser doesn't support local storage, the selected subjects will not be saved."
+		    	document.getElementById("warning").style.display = "block";
 		    }
         });
 
