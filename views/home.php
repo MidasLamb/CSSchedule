@@ -110,8 +110,9 @@
             document.getElementById("downloadICS").href= linkElement.placeholder;
 
             var courseCSV = newLink.split("?")[1].split("=")[1];
-	    localStorage.setItem("courses", courseCSV);
-
+            if (typeof(Storage) !== "undefined") {
+	    	localStorage.setItem("courses", courseCSV);
+	    }
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
                     $('#searchText').get(0).focus();
@@ -204,14 +205,16 @@
         };
 
         $(document).ready(function(){
-            var courses = localStorage.getItem("courses");
-            if (courses){
-                var courses = courses.split(",");
-                courses.forEach(function(course, index){
-                    toggleCourseCSV(course);
-                    $("#"+course).addClass("active");
-                });
-            }
+        	if (typeof(Storage) !== "undefined") {
+		        var courses = localStorage.getItem("courses");
+		        if (courses){
+		            var courses = courses.split(",");
+		            courses.forEach(function(course, index){
+		                toggleCourseCSV(course);
+		                $("#"+course).addClass("active");
+		            });
+		        }
+		    }
         });
 
     </script>
