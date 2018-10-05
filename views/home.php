@@ -114,7 +114,7 @@
             if (typeof(localStorage) !== "undefined") {
 	    		localStorage.setItem("courses", courseCSV);
 	    	} else {
-	    		document.getElementById("warning").innerHTML = = "Because your browser doesn't support local storage, the selected subjects will not be saved."
+	    		document.getElementById("warning").innerHTML = "Because your browser doesn't support local storage, the selected subjects will not be saved."
 	    	}
             if ($("#searchText").isOnScreen()){
                 window.setTimeout(function(){
