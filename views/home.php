@@ -230,7 +230,7 @@
 			  },
 			  "showLink": false,
 			  "content": {
-			    "message": "This website uses cookies to personalise content."
+			    "message": "This website uses cookies to personalise content. It just remembers what you selected previously, to make it easier for you to change your courses, or select additional courses."
 			  }
 		})});
     </script>
