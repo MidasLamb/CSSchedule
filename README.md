@@ -47,6 +47,8 @@ As the web-application adds the selected courses to the URL of the webpage, the 
 
 ![Screenshot Agenda Toevoegen](/images/AgendaToevoegen.png)
 
+It is also possible to set reminders for upcoming events when importing the ICS link/file.
+
 
 ## How to pull
 
@@ -65,4 +67,4 @@ Composer is a package manager for PHP. Install Composer and install it to the pr
 
 ## About the author
 
-This repository is created and maintained by Midas Lambrichts, Computer Science student at KU Leuven. Contributions to this repository are welcomed in the form of pull requests.
+This repository is created and maintained by Midas Lambrichts, Computer Science student at KU Leuven. This project was created in collaboration with [Pieter-Jan Coenen](https://github.com/pcoenen) and [Stijn Caerts](https://github.com/StijnCaerts). Contributions to this repository are welcomed in the form of pull requests.
